@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  app:
+    image: node:18
+    container_name: webdev-class-app
+    working_dir: /usr/src/app
+    volumes:
+      - ./app:/usr/src/app
+    environment:
+      - NODE_ENV=production
+    command: "npm start"
+    ports:
+      - "3000:3000"
+    networks:
+      - custom-net
+    depends_on:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - development
+
+  db:
+    image: postgres:15
+    container_name: webdev-class-db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=securepassword
+    networks:
+      - custom-net
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - production
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - custom-net
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - custom-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+
+volumes:
+  postgres-data:
+
+networks:
+  custom-net:
+    driver: bridge
+

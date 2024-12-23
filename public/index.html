@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicación Modular con Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <header class="bg-primary text-white text-center py-3"></header>
+  <main class="container mt-4">
+    <h1 class="text-center">Bienvenido a mi Aplicación Modular</h1>
+    <div id="posts" class="row"></div>
+  </main>
+  <footer class="bg-dark text-white text-center py-3 mt-5"></footer>
+
+  <!-- Scripts -->
+  <script src="./scripts/main.js" type="module"></script>
+  <script src="./scripts/fetchData.js" type="module"></script>
+</body>
+<script>
+    // Cargar encabezado y pie de página dinámicamente
+    fetch('header.html').then(res => res.text()).then(data => document.getElementById('header').innerHTML = data);
+    fetch('footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
+</script>
+</html>

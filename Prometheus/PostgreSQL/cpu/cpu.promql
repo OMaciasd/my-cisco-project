@@ -1,0 +1,1 @@
+rate(container_cpu_usage_seconds_total{container="webdev-class-app"}[1m])

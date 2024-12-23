@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    sh 'docker-compose down'
+                    sh 'docker-compose build'
+                    sh 'docker-compose up -d'
+                }
+            }
+        stage('Backup Database') {
+            steps {
+                sh '''
+                TIMESTAMP=$(date +%F_%H-%M-%S)
+                docker exec -t webdev-class-db-1 pg_dumpall -c -U postgres > /path/to/backups/db_backup_$TIMESTAMP.sql
+                '''
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+rate(http_request_duration_seconds_sum[1m])

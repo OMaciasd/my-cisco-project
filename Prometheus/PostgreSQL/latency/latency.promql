@@ -1,0 +1,1 @@
+pg_stat_statements_mean_exec_time_seconds{datname="your_db_name"}

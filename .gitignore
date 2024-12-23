@@ -7,15 +7,19 @@
 !*o*
 
 u*
-*$*
 *.j*
 *env
 
 !*y*
 !*h
+!*.js*
 
 *che*
 *.tmp
 
 [Oo]bj/
 [Bb]in/
+
+.$*
+no*
+*-l*

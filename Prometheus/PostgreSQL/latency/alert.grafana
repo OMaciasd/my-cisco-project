@@ -1,0 +1,1 @@
+WHEN avg() OF query (A, 5m, now) IS ABOVE 2 seconds

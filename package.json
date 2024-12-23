@@ -1,0 +1,20 @@
+{
+  "name": "webdev-class",
+  "version": "1.0.0",
+  "description": "This project introduces the basics of web development using **HTML**, **CSS**, and **JavaScript**. It includes examples and exercises to build a simple, responsive webpage with interactive features.",
+  "main": "button.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "webdev-class": "file:"
+  }
+}
